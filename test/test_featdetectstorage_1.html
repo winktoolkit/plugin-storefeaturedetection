@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<!-- THEME UTILITY -->
+		<link rel="stylesheet" href="http://www.winktoolkit.org/webapps/wink/_themes/utils/loader.css" type="text/css">
+		<!-- END THEME UTILITY -->
+		
+		<!-- THEME UTILITY -->
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_themes/utils/loader.js"></script>
+		<!-- END THEME UTILITY -->
+		
+		<!-- CORE -->
+		<!-- Can be replaced by wink.min.js -->
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_amd/js/amd.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_base/js/base.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_dom/js/dom.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/error/js/error.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/json/js/json.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/json/js/json.extended.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/ua/js/ua.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/topics/js/topics.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_json.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_css.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_event.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_dom.js"></script>
+		
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_api.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_audio.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_video.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/_base/_feat/js/feat_graphic.js"></script>
+		
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/fx/_xy/js/2dfx.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/math/_basics/js/basics.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/net/xhr/js/xhr.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/ui/xy/layer/js/layer.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/ux/event/js/event.js"></script>
+		<script type="text/javascript" src="http://www.winktoolkit.org/webapps/wink/ux/touch/js/touch.js"></script>
+		<!-- END CORE -->
+
+		<script type="text/javascript" src="http://www.winktoolkit.org/plugins/simplestorage/js/simplestorage.js"></script>
+		<script type="text/javascript" src="../js/featdetectstorage.js"></script>
+
+		<script>
+			var log;
+			
+			var init = function()
+			{
+				log = wink.byId('container');
+				
+				window.scrollTo(0,0);
+				
+				var time_features = 0,
+					time_props = 0;
+				
+				var features = [
+					"unknow-feature", "json-parse", "json-stringify",
+					"css-transform", "css-translate3d", "css-border-radius", "css-text-shadow", "css-box-shadow", 
+					"css-gradient", "css-transition", "css-animation", "css-perspective", "css-matrix", "css-matrix-stack-inversed",
+					"css-overflow-scrolling",
+					"touch", "touchstart", "touchmove", "touchend",
+					"gesture", "gesturestart", "gesturechange", "gestureend", "transitionend", "hashchange",
+					"dynamicBase", 
+					"native-geolocation", "native-device-orientation", "native-device-motion", "native-localstorage",
+					"native-sessionstorage", "native-websockets", "native-worker", "native-getusermedia",
+					"audio", "audio-mp3", "audio-ogg", "audio-wav", "audio-m4a",
+					"video", "video-h264", "video-ogg", "video-webm",
+					"canvas-webgl"
+				];
+	
+				var i, l = features.length;
+				var t1 = new Date().getTime();
+				for (i = 0; i < l; i++) {
+					wink.has(features[i]);
+				}
+				var t2 = new Date().getTime();
+				time_features += (t2 - t1);
+
+				var props = [
+					"touchstart", "touchmove", "touchend",
+					"transform", "transform-property", "perspective", "perspective-origin", "transform-style", "backface-visibility",
+					"transform-origin", "transform-origin-x", "transform-origin-y", "transform-origin-z",
+					"transition", "animation",
+					"transition-property", "transition-duration", "transition-delay", "transition-timing-function", "transitionend",
+					"box-shadow", "text-shadow", "border-radius", "gradient",
+					"tap-highlight-color", "user-select", "overflow-scrolling"
+				];
+				var i, l = props.length;
+				var t1 = new Date().getTime();
+				for (i = 0; i < l; i++) {
+					wink.has.prop(props[i]);
+				}
+				var t2 = new Date().getTime();
+				time_props += (t2 - t1);
+				
+				log.innerHTML += "Time elapsed for feature detection: " + (time_features + time_props) + "<br>";
+			};
+			
+			var store = function() {
+				new wink.plugins.FeatDetectStorage().store();
+			};
+			
+			var remove = function() {
+				new wink.plugins.FeatDetectStorage().remove();
+			};
+			
+			var assert = function(testName, test) {
+				var testLog = "Test [" + testName + "] ";
+				if (test) {
+					log.innerHTML += testLog + "OK<br>";
+				} else {
+					log.innerHTML += testLog + "KO<br>";
+				}
+			};
+		</script>
+	</head>
+<body onload="init()">
+	<div class="w_box w_header w_bg_dark">
+		<span id="title">Feature Detection Storage</span>
+		<input type="button" value="home" class="w_button w_radius w_bg_light w_right" onclick="window.location='http://www.winktoolkit.org/webapps?theme='+theme"/>
+	</div>
+	<div>
+		Store and refresh the page to view differences.
+		<input type="button" value="store" onclick="store();" />
+		<input type="button" value="remove" onclick="remove();" />
+	</div>
+	<div id="container">
+	</div>
+</body>
+</html>
